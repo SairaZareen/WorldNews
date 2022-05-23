@@ -7,6 +7,14 @@
     tools:context=".NewsFragment">
 
 
+    <Spinner
+
+        android:id="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="32dp"
+        tools:ignore="SpeakableTextPresentCheck" />
+
     <SearchView
         android:id="@+id/seachView_News"
         android:layout_width="match_parent"
@@ -21,7 +29,14 @@
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="70dp"
+        android:layout_marginTop="150dp"
+        android:indeterminate = "true"
+        android:layout_marginStart="70dp"
+        android:max="100"
+        android:minWidth="200dp"
+        android:minHeight="50dp"
         android:visibility="invisible" />
 </LinearLayout>

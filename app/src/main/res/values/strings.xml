@@ -1,5 +1,45 @@
 <resources>
     <string name="app_name">My News</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="Countries">
+        <item>ar</item>
+        <item>gr</item>
+        <item>au</item>
+        <item>hk</item>
+        <item>at</item>
+        <item>hu</item>
+        <item>be</item>
+        <item>in</item>
+        <item>br</item>
+        <item>id</item>
+        <item>bg</item>
+        <item>ie</item>
+        <item>ca</item>
+        <item>il</item>
+        <item>co</item>
+        <item>cn</item>
+        <item>it</item>
+        <item>co</item>
+        <item>jp</item>
+        <item>cu</item>
+        <item>lv</item>
+        <item>cz</item>
+        <item>lt</item>
+        <item>eg</item>
+        <item>my</item>
+        <item>fr</item>
+        <item>mx</item>
+        <item>de</item>
+        <item>ma</item>
+        <item>nl</item>
+        <item>za</item>
+        <item>nz</item>
+        <item>kr</item>
+        <item>ng</item>
+
+
+
+
+
+    </string-array>
 </resources>

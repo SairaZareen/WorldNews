@@ -6,9 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AbsListView
-import android.widget.SearchView
-import android.widget.Toast
+import android.widget.*
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -25,6 +23,7 @@ class NewsFragment : Fragment() {
     private lateinit var viewModel: NewsViewModel
     private lateinit var fragmentNewsBinding: FragmentNewsBinding
     private lateinit var newsAdapter: NewsAdapter
+    private lateinit var spinner: Spinner
     private var country = "us"
     private var page = 1
     private var isScrolling = false
@@ -50,9 +49,35 @@ class NewsFragment : Fragment() {
             }
             findNavController().navigate(R.id.action_newsFragment_to_infoFragment,bundle)
         }
+        initSpinner()
         initRecyclerView()
         viewNewsList()
         setSearchView()
+    }
+
+    private fun initSpinner() {
+        spinner = fragmentNewsBinding.spinner
+        val countries = resources.getStringArray(R.array.Countries)
+        spinner.adapter =
+            ArrayAdapter(this.requireActivity(), android.R.layout.simple_spinner_item,countries)
+        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                country = countries[position]
+                viewNewsList()
+                setSearchView()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+
     }
 
     private fun viewNewsList() {
@@ -163,35 +188,6 @@ class NewsFragment : Fragment() {
             })
     }
     //Search news
- /*   private fun viewSearchedNews() {
-        viewModel.searchedNews.observe(viewLifecycleOwner) { response ->
-            when (response) {
-                is Resource.Success -> {
-                    hideProgressBar()
-                    response.data?.let {
-                        newsAdapter.differ.submitList(it.articles.toList())
-                        if (it.totalResults % 20 == 0) {
-                            pages = it.totalResults / 20
-                        } else {
-                            pages = it.totalResults / 20 + 1
-                        }
-                        isLastPage = page == pages
-                    }
-                }
-                is Resource.Error -> {
-                    hideProgressBar()
-                    response.message?.let {
-                        Toast.makeText(activity, "An error occurred : $it", Toast.LENGTH_LONG)
-                            .show()
-                    }
-                }
-                is Resource.Loading -> {
-                    showProgressBar()
-                }
-            }
-        }
-    }*/
-
     fun viewSearchedNews(){
         viewModel.searchedNews.observe(viewLifecycleOwner,{response->
             when(response){
@@ -223,4 +219,5 @@ class NewsFragment : Fragment() {
             }
         })
     }
+
 }
